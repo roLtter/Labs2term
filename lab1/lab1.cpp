@@ -250,6 +250,10 @@ int main() {
     int N;
     cout << "Enter number of elements: ";
     cin >> N;
+    ofstream file_stream("times.txt");
+    file_stream.clear();
+    file_stream << "Number of elements: " << N << endl << endl;
+    file_stream.close();
     cout << "Processing..." << endl;
     Solution solution(N);
     solution.Generation();
