@@ -1,10 +1,10 @@
 #include "cIntegralMacroses.h"
 
 int choice;
-
+double a, b;
 class Methods{
 public:
-    static double methodLeftRectangle(double a, double b, int n) {
+    static double methodLeftRectangle(int n) {
         double h  = (b - a) / n;
         double sum = 0.0, fx;
         for (int i = 0; i < n; i++) {
@@ -14,7 +14,7 @@ public:
         return sum * h;
     }
 
-    static double methodRightRectangle(double a, double b, int n) {
+    static double methodRightRectangle(int n) {
         double h  = (b - a) / n;
         double sum = 0.0, fx;
         for (int i = 0; i < n; ++i) {
@@ -24,7 +24,7 @@ public:
         return sum * h;
     }
 
-    static double methodMiddleRectangle(double a, double b, int n) {
+    static double methodMiddleRectangle(int n) {
         double h  = (b - a) / n;
         double sum = 0.0, fx;
         for (int i = 0; i < n; ++i) {
@@ -34,7 +34,7 @@ public:
         return sum * h;
     }
 
-    static double methodTrapezoid(double a, double b, int n) {
+    static double methodTrapezoid(int n) {
         double h  = (b - a) / n;
         double sum = 0.0, fx;
         for (int i = 0; i < n; ++i) {
@@ -44,7 +44,7 @@ public:
         return sum * h;
     }
 
-    static double methodSimpson(double a, double b, int n) {
+    static double methodSimpson(int n) {
         const double h = (b-a)/n;
         double k1 = 0, k2 = 0;
         for(int i = 1; i < n; i += 2) {
@@ -54,7 +54,7 @@ public:
         return h/3*(f(choice, a) + 4*k1 + 2*k2);
     }
 
-    static double methodGauss(double a, double b, int n) {
+    static double methodGauss(int n) {
         double h = (b - a) / n,
                c = h / sqrt(3),
                d = h - c,
@@ -71,102 +71,102 @@ public:
 
 class Calls{
 public:
-     void callLeftRectangle(double a, double b) {
+     void callLeftRectangle() {
         string methodName = "methodLeftRectangle";
         int n = 10;
-        double s1 = Methods::methodLeftRectangle(a, b, n), s;
+        double s1 = Methods::methodLeftRectangle(n), s;
         do {
             N.push_back(n);
             H.push_back((b - a) / n);
             S1.push_back(s1);
             s = s1;
             n *= 2;
-            s1 = Methods::methodLeftRectangle(a, b, n);
+            s1 = Methods::methodLeftRectangle(n);
             S1_S.push_back(abs(s1-s));
         }
         while (abs(s1 - s) > E);
         printArrays(methodName);
     }
 
-    void callRightRectangle(double a, double b) {
+    void callRightRectangle() {
         string methodName = "methodRightRectangle";
         int n = 10;
-        double s1 = Methods::methodRightRectangle(a, b, n), s;
+        double s1 = Methods::methodRightRectangle(n), s;
         do {
             N.push_back(n);
             H.push_back((b - a) / n);
             S1.push_back(s1);
             s = s1;
             n *= 2;
-            s1 = Methods::methodRightRectangle(a, b, n);
+            s1 = Methods::methodRightRectangle(n);
             S1_S.push_back(abs(s1-s));
         }
         while (abs(s1 - s) > E);
         printArrays(methodName);
     }
 
-    void callMiddleRectangle(double a, double b) {
+    void callMiddleRectangle() {
         string methodName = "methodMiddleRectangle";
         int n = 10;
-        double s1 = Methods::methodMiddleRectangle(a, b, n), s;
+        double s1 = Methods::methodMiddleRectangle(n), s;
         do {
             N.push_back(n);
             H.push_back((b - a) / n);
             S1.push_back(s1);
             s = s1;
             n *= 2;
-            s1 = Methods::methodMiddleRectangle(a, b, n);
+            s1 = Methods::methodMiddleRectangle(n);
             S1_S.push_back(abs(s1-s));
         }
         while (abs(s1 - s) > E);
         printArrays(methodName);
     }
 
-    void callTrapezoid(double a, double b) {
+    void callTrapezoid() {
         string methodName = "methodTrapezoid";
         int n = 10;
-        double s1 = Methods::methodTrapezoid(a, b, n), s;
+        double s1 = Methods::methodTrapezoid(n), s;
         do {
             N.push_back(n);
             H.push_back((b - a) / n);
             S1.push_back(s1);
             s = s1;
             n *= 2;
-            s1 = Methods::methodTrapezoid(a, b, n);
+            s1 = Methods::methodTrapezoid(n);
             S1_S.push_back(abs(s1-s));
         }
         while (abs(s1 - s) > E);
         printArrays(methodName);
     }
 
-    void callSimpson(double a, double b) {
+    void callSimpson() {
         string methodName = "methodSimpson";
         int n = 10;
-        double s1 = Methods::methodSimpson(a, b, n), s;
+        double s1 = Methods::methodSimpson(n), s;
         do {
             N.push_back(n);
             H.push_back((b - a) / n);
             S1.push_back(s1);
             s = s1;
             n *= 2;
-            s1 = Methods::methodSimpson(a, b, n);
+            s1 = Methods::methodSimpson(n);
             S1_S.push_back(abs(s1-s));
         }
         while (abs(s1 - s) > E);
         printArrays(methodName);
     }
 
-    void callGauss(double a, double b) {
+    void callGauss() {
         string methodName = "methodGauss";
         int n = 2;
-        double s1 = Methods::methodGauss(a, b, n), s;
+        double s1 = Methods::methodGauss(n), s;
         do {
             N.push_back(n);
             H.push_back((b - a) / n);
             S1.push_back(s1);
             s = s1;
             n *= 2;
-            s1 = Methods::methodGauss(a, b, n);
+            s1 = Methods::methodGauss(n);
             S1_S.push_back(abs(s1-s));
         }
         while (abs(s1 - s) > E);
@@ -186,7 +186,10 @@ public:
         val.insert(finalCalc);
         if (methodName == "methodGauss") {
             fout << endl << endl;
-            fout << "Average value: " << getAverageValue() << endl;
+            double average = getAverageValue();
+            fout << "Average result: " << average << endl << endl;
+
+            fout << "In range from " << a << " to " << b << ", { " << chosenIntegral.substr(1, chosenIntegral.size() - 2) << " } ~= " << average << endl;
             exit(0);
         }
         fout.close();
@@ -209,14 +212,19 @@ private:
     set<double> val;
 };
 
+void get_a_b(){
+    a = integrals.at(choice).first;
+    b = integrals.at(choice).second;
+}
+
+
 void Terminal() {
     ofstream preparation("output.txt");
     preparation.clear();
     cout << "Input the value 1-50 what integral you want to calculate." << endl;
     cin >> choice;
     f(choice);
-    double a = integrals.at(choice).first;
-    double b = integrals.at(choice).second;
+    get_a_b();
     preparation << "You've chosen Integral №" << choice << ":  " << chosenIntegral.substr(1, chosenIntegral.length() - 2) << " to calculate from " << a << " to " << b << "."<< endl << endl;
     if (choice == 30){
         preparation << chosenIntegral.substr(1, chosenIntegral.length() - 2) << " to calculate from " << a << " to " << b<< " Can't be solved since it's a convergent integral." << endl;
@@ -225,12 +233,12 @@ void Terminal() {
     }
     preparation.close();
     Calls c;
-    c.callLeftRectangle(a, b);
-    c.callRightRectangle(a, b);
-    c.callMiddleRectangle(a, b);
-    c.callTrapezoid(a, b);
-    c.callSimpson(a, b);
-    c.callGauss(a, b);
+    c.callLeftRectangle();
+    c.callRightRectangle();
+    c.callMiddleRectangle();
+    c.callTrapezoid();
+    c.callSimpson();
+    c.callGauss();
 }
 
 int main() {

@@ -1,4 +1,4 @@
-You've chosen Integral №7:  1 / (sqrt(3 * pow(x, 2) + 2)) to calculate from 2 to 8.
+You've chosen Integral №7:  1 / sqrt(3 * pow(x, 2) + 2) to calculate from 2 to 8.
 
 											  methodLeftRectangle:
 
@@ -69,4 +69,6 @@ Final method result:   0.779308926
 Final method result:   0.7790973841
 
 
-Average value: 0.7791906401
+Average result: 0.7791906401
+
+In range from 2 to 8, { 1 / sqrt(3 * pow(x, 2) + 2) } ~= 0.7791906401

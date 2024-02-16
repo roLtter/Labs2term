@@ -82,7 +82,7 @@ public:
         string name_sort = "Simple sort: "s;
         int min_index;
         unsigned long long int count = 0,
-                                             start_time = clock();
+                               start_time = clock();
 
         for (int k = 0; k < N - 1; k++) {
             min_index = k;
@@ -104,7 +104,7 @@ public:
         string name_sort = "Bubble sort: "s;
         int length = N;
         unsigned long long int count = 0,
-                                             start_time = clock();
+                               start_time = clock();
         while (length != 0) {
             int max_index = 0;
             for (int i = 1; i < length; ++i) {
@@ -170,7 +170,7 @@ public:
 
     void Commander() {
         cout << endl << "Available decisions to print: " << endl;
-        for (const auto &[name, decision]: decisions) {
+        for (const auto & [name, decision]: decisions) {
             cout << name << endl;
         }
         cout << "Or type 1 to exit" << endl;
@@ -196,7 +196,7 @@ private:
     const string name_file_input = "input.txt",
                         name_file_times = "times.txt";
     const int left_border = -25000,
-                   right_border = 25000;
+              right_border = 25000;
     vector<int> random_numbers = {}; // main array of numbers to sort
     vector<int> random_numbers_heap = {};   // heap sort
     vector<int> random_numbers_quick = {}; // quick sort
