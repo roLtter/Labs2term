@@ -59,17 +59,17 @@
 #define INTEGRAL37 (x/(sqrt(pow(x, 2) - 14)))
 #define INTEGRAL38 (12 * x /(pow(x, 2) - 1))
 #define INTEGRAL39 (5 * pow(x, 3) - 10 * x)
-#define INTEGRAL40 ((pow(x, 7) + 1) / pow(x, 2))   //////////////////////////
-#define INTEGRAL41 (sqrt(x-2))
-#define INTEGRAL42 ((1)/(sqrt(5*pow(x, 2)+7)))
-#define INTEGRAL43 ((-7*x)/(2*pow(x, 2)+19))
-#define INTEGRAL44 (pow(x, 3)+pow(x, 2)+5)
-#define INTEGRAL45 (5-pow((x-1), 3))
-#define INTEGRAL46 ((5)/(sqrt(x)-7*x))
-#define INTEGRAL47 ((1)/(sqrt(x+9)))
-#define INTEGRAL48 (7*pow(x, 4)-pow(x, 5)-2)
-#define INTEGRAL49 ((pow(x, 2))/(4*pow(x, 3)+1))
-#define INTEGRAL50 (sqrt(23-5*x))
+#define INTEGRAL40 ((pow(x, 7) + 1) / pow(x, 2))
+#define INTEGRAL41 (sqrt(x - 2))
+#define INTEGRAL42 (1 / sqrt(5 * pow(x, 2) + 7))
+#define INTEGRAL43 (-7*x / (2 * pow(x, 2) + 19))
+#define INTEGRAL44 (pow(x, 3) + pow(x, 2) + 5)
+#define INTEGRAL45 (5 - pow((x - 1), 3))
+#define INTEGRAL46 (5 / (sqrt(x) - 7 * x))
+#define INTEGRAL47 (1 / sqrt(x + 9))
+#define INTEGRAL48 (7 * pow(x, 4) - pow(x, 5) - 2)
+#define INTEGRAL49 (pow(x, 2) / (4 * pow(x, 3) + 1))
+#define INTEGRAL50 (sqrt(23 - 5 * x))
 
 using namespace std;
 
