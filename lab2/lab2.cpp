@@ -187,7 +187,7 @@ public:
         if (methodName == "methodGauss") {
             fout << endl << endl;
             double average = getAverageValue();
-            fout << "Average result: " << average << endl << endl;
+            fout << "Average result:  " << average << endl << endl;
 
             fout << "In range from " << a << " to " << b << ", { " << chosenIntegral.substr(1, chosenIntegral.size() - 2) << " } ~= " << average << endl;
             exit(0);
