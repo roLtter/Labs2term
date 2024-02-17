@@ -177,7 +177,7 @@ public:
     void printArrays(const string& methodName){
         ofstream fout("output.txt", ios::app);
         fout << "\t\t\t\t\t\t\t\t\t\t\t  " << methodName << ":" << endl << endl;
-        fout << "   Number of divisions\t\t   The value of h\t\t\t The integral value s1\t\t\t  The dif |s1-s|" << endl;
+        fout << "  Number of divisions(n)\t\t The value of h\t\t\t The integral value s1\t\t\t  The dif |s1-s|" << endl;
         for (int i = 0; i < N.size(); i++) {
             fout << "|        " << left << setw(15) << N[i] << "|        " << setw(20) << H[i] << "|        " << setw(20) << setprecision(10) << S1[i] <<  "|        " << setw(20) << S1_S[i] << "|" << endl;
         }

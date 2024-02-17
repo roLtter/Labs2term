@@ -17,7 +17,7 @@
 #include <iomanip>
 #include <string>
 
-#define stringify(s)    substringify(s)
+#define stringify(s) substringify(s)
 #define substringify(s) #s
 
 #define INTEGRAL1 (6 * x - pow(x, 4) + 5)
