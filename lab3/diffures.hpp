@@ -12,7 +12,7 @@
 #include <cmath>
 #include <fstream>
 #include <iomanip>
-#define DIFF7 (sin(x) - cos(x)*(2*y+1))
+#define DIFF (sin(x) - cos(x)*(2*y+1))
 
 #define stringify(s) substringify(s)
 #define substringify(s) #s
@@ -25,7 +25,7 @@ using std::endl;
 using std::pair;
 
 double f(double x, double y){
-   return DIFF7;
+   return DIFF;
 }
 
 #endif //LAB3_DIFFURES_HPP

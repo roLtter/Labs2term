@@ -91,7 +91,7 @@ public:
         std::ofstream file ("output.txt");
         file.clear();
         file << "Origin equation:" << endl;
-        file << "y' = " << stringify(DIFF7);
+        file << "y' = " << stringify(DIFF);
         file << " with initial condition: y(1) = 0.5" << endl;
         file.close();
     }
