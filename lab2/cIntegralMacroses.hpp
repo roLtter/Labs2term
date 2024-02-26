@@ -2,8 +2,8 @@
 // Created by roLtter on 15.02.2024.
 //
 
-#ifndef LABS_CINTEGRALMACROSES_H
-#define LABS_CINTEGRALMACROSES_H
+#ifndef LABS_CINTEGRALMACROSES_HPP
+#define LABS_CINTEGRALMACROSES_HPP
 
 #include <iostream>
 #include <cmath>
@@ -184,4 +184,4 @@ double f(int choice, double x = 0) {
     }
 }
 
-#endif //LABS_CINTEGRALMACROSES_H
+#endif //LABS_CINTEGRALMACROSES_HPP

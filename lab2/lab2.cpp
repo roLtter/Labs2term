@@ -1,4 +1,4 @@
-#include "cIntegralMacroses.h"
+#include "cIntegralMacroses.hpp"
 
 int choice;
 double a, b;
