@@ -99,32 +99,30 @@ private:
 
     class CramerMethod{
     private:
-        static auto determinant3x3(const vector<vector<double>>& matrix) {
-            return matrix[0][0] * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1]) -
-                   matrix[0][1] * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0]) +
-                   matrix[0][2] * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]);
-        }
-        static auto determinant5x5(const vector<vector<double>>& matrix) {
-            auto det = 0.0;
-
-            for (int i = 0; i < 5; ++i) {
-                vector<vector<double>> submatrix(4, vector<double>(4, 0.0));
-
-                for (auto j = 1; j < 5; ++j) {
-                    auto col = 0;
-                    for (auto k = 0; k < 5; ++k) {
-                        if (k != i) {
-                            submatrix[j - 1][col++] = matrix[j][k];
-                        }
-                    }
-                }
-
-                det += (i % 2 == 0 ? 1 : -1) * matrix[0][i] * determinant3x3(submatrix);
-            }
-
-            return det;
+        static auto det_2x2(vector<vector<double>> mat) {
+            return mat[0][0] * mat[1][1] - mat[0][1] * mat[1][0];
         }
 
+        static auto det_3x3(vector<vector<double>> mat) {
+            return mat[0][0] * det_2x2({{mat[1][1], mat[1][2]}, {mat[2][1], mat[2][2]}})
+                   - mat[0][1] * det_2x2({{mat[1][0], mat[1][2]}, {mat[2][0], mat[2][2]}})
+                   + mat[0][2] * det_2x2({{mat[1][0], mat[1][1]}, {mat[2][0], mat[2][1]}});
+        }
+
+        static auto det_4x4(std::vector<std::vector<double>> mat) {
+            return mat[0][0] * det_3x3({{mat[1][1], mat[1][2], mat[1][3]}, {mat[2][1], mat[2][2], mat[2][3]}, {mat[3][1], mat[3][2], mat[3][3]}})
+                   - mat[0][1] * det_3x3({{mat[1][0], mat[1][2], mat[1][3]}, {mat[2][0], mat[2][2], mat[2][3]}, {mat[3][0], mat[3][2], mat[3][3]}})
+                   + mat[0][2] * det_3x3({{mat[1][0], mat[1][1], mat[1][3]}, {mat[2][0], mat[2][1], mat[2][3]}, {mat[3][0], mat[3][1], mat[3][3]}})
+                   - mat[0][3] * det_3x3({{mat[1][0], mat[1][1], mat[1][2]}, {mat[2][0], mat[2][1], mat[2][2]}, {mat[3][0], mat[3][1], mat[3][2]}});
+        }
+
+        static auto det_5x5(vector<vector<double>> mat) {
+            return mat[0][0] * det_4x4({{mat[1][1], mat[1][2], mat[1][3], mat[1][4]}, {mat[2][1], mat[2][2], mat[2][3], mat[2][4]}, {mat[3][1], mat[3][2], mat[3][3], mat[3][4]}, {mat[4][1], mat[4][2], mat[4][3], mat[4][4]}})
+                   - mat[0][1] * det_4x4({{mat[1][0], mat[1][2], mat[1][3], mat[1][4]}, {mat[2][0], mat[2][2], mat[2][3], mat[2][4]}, {mat[3][0], mat[3][2], mat[3][3], mat[3][4]}, {mat[4][0], mat[4][2], mat[4][3], mat[4][4]}})
+                   + mat[0][2] * det_4x4({{mat[1][0], mat[1][1], mat[1][3], mat[1][4]}, {mat[2][0], mat[2][1], mat[2][3], mat[2][4]}, {mat[3][0], mat[3][1], mat[3][3], mat[3][4]}, {mat[4][0], mat[4][1], mat[4][3], mat[4][4]}})
+                   - mat[0][3] * det_4x4({{mat[1][0], mat[1][1], mat[1][2], mat[1][4]}, {mat[2][0], mat[2][1], mat[2][2], mat[2][4]}, {mat[3][0], mat[3][1], mat[3][2], mat[3][4]}, {mat[4][0], mat[4][1], mat[4][2], mat[4][4]}})
+                   + mat[0][4] * det_4x4({{mat[1][0], mat[1][1], mat[1][2], mat[1][3]}, {mat[2][0], mat[2][1], mat[2][2], mat[2][3]}, {mat[3][0], mat[3][1], mat[3][2], mat[3][3]}, {mat[4][0], mat[4][1], mat[4][2], mat[4][3]}});
+        }
     public:
         static auto solveUsingCramer5x5() {
             auto A = readData();
@@ -135,7 +133,7 @@ private:
             }
 
             auto n = A.size();
-            auto detA = determinant5x5(A);
+            auto detA = det_5x5(A);
 
             if (detA == 0) {
                 cout << "Determinant is zero. No solution exists." << endl;
@@ -148,7 +146,7 @@ private:
                 for (auto j = 0; j < n; ++j) {
                     tempA[j][i] = B[j];
                 }
-                auto detAi = determinant5x5(tempA);
+                auto detAi = det_5x5(tempA);
                 solutions.push_back(detAi / detA);
                 for (auto j = 0; j < n; ++j) {
                     tempA[j][i] = A[j][i];
@@ -166,21 +164,21 @@ public:
         fs << "Gauss method:" << endl;
         auto iter = 1;
         for (auto g : GaussMethod::backSubstitution()) {
-            fs << std::setprecision(16) << "x" << iter << " = " << g << endl;
+            fs << std::setprecision(20) << "x" << iter << " = " << g << endl;
             ++iter;
         }
         iter = 1;
         fs << endl << endl;
         fs << "Gauss Zeidel method:" << endl;
         for (auto g : method.calculate()) {
-            fs << std::setprecision(16) << "x" << iter << " = " << g << endl;
+            fs << std::setprecision(20) << "x" << iter << " = " << g << endl;
             ++iter;
         }
         iter = 1;
         fs << endl << endl;
         fs << "Cramer method:" << endl;
         for (auto g : CramerMethod::solveUsingCramer5x5()) {
-            fs << std::setprecision(16) << "x" << iter << " = " << g << endl;
+            fs << std::setprecision(20) << "x" << iter << " = " << g << endl;
             ++iter;
         }
         fs.close();

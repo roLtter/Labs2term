@@ -12,6 +12,8 @@
 #include <fstream>
 #include <cmath>
 #include <iomanip>
+#include <cassert>
+#include <stdexcept>
 
 using::std::vector;
 using::std::string;

@@ -13,6 +13,7 @@
 #include <fstream>
 #include <iomanip>
 #define DIFF (sin(x) - cos(x)*(2*y+1))
+#define DIFF1 (y/x - 2/pow(x,2))
 
 #define stringify(s) substringify(s)
 #define substringify(s) #s

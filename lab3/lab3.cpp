@@ -10,14 +10,13 @@ public:
     void methodEuler(double h){
         string methodName = "Euler";
         double x = x0, y = y0;
-        double xtemp = x0;
         do {
             valuesX.push_back(x);
             valuesY.push_back(y);
             y += h * f(x, y);
             x += h;
         }
-        while (x <= xtemp + 10);
+        while (x <= this->x0 + 10);
         printToFile(methodName, h);
     }
 
@@ -25,7 +24,6 @@ public:
         string methodName = "Modified Euler";
         double x = x0;
         double y = y0;
-        double xtemp = x0;
         do {
             valuesY.push_back(y);
             double k1 = h * f(x, y);
@@ -34,7 +32,7 @@ public:
             y += k2;
             x += h;
         }
-        while (x <= xtemp + 10);
+        while (x <= this->x0 + 10);
         printToFile(methodName);
     }
 
@@ -42,7 +40,6 @@ public:
         string methodName = "Improved Euler";
         double x = x0;
         double y = y0;
-        double xtemp = x0;
         do{
             valuesY.push_back(y);
             double k1 = h * f(x, y);
@@ -51,7 +48,7 @@ public:
             y += 0.5 * (k1 + k2);
             x += h;
         }
-        while (x <= xtemp + 10);
+        while (x <= this->x0 + 10);
         printToFile(methodName);
     }
 
@@ -59,7 +56,6 @@ public:
         string methodName = "Runge Kutta";
         double x = x0;
         double y = y0;
-        double xtemp = x0;
         do {
             valuesY.push_back(y);
             double k1 = h * f(x, y);
@@ -69,21 +65,20 @@ public:
 
             y += (k1 + 2 * k2 + 2 * k3 + k4) / 6;
             x += h;
-        }while (x <= xtemp + 10);
+        }while (x <= this->x0 + 10);
         printToFile(methodName);
     }
 
     void backwardEulerMethod(double h) {
         string methodName = "Backward Euler";
-        double x = x0;
-        double y = y0;
-        double xtemp = x0;
+        double x = this->x0;
+        double y = this->y0;
         do {
             valuesY.push_back(y);
-            y += h * f(x + h, y) / (1 + h);
+            y += h * f(x + h, y);
             x += h;
         }
-        while (x <= xtemp + 10);
+        while (x <= this->x0 + 10);
         printToFile(methodName);
     }
 
@@ -105,14 +100,11 @@ private:
     void printToFile(const string& methodName, double stepValue = 0){
         std::fstream file ("output.txt", std::ios::app);
         if (methodName == "Euler"){
-            file << endl << endl;
-            if (stepValue == 0.01){
-                file << "\t\t" << "The step value is: " << stepValue << endl;
+            file << endl << endl << "\t\t";
+            if (stepValue != 0.01){
+                file << " ";
             }
-            else {
-                file << "\t\t " << "The step value is: " << stepValue << endl;
-            }
-            file << "x values:       |";
+            file << "The step value is: " << stepValue << endl << "x values:       |";
             for (auto i : valuesX){
                 file << std::setprecision(10) << std::setw(15) << i << "   |";
             }
